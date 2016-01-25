@@ -3,11 +3,11 @@ $(document).ready(function(){
 function Jukebox(song_list){
 	this.audioMP3 = document.createElement('audio');
 	this.songs = song_list;
-
+// this function sources what song in the array is given to a button
 	this.addURL = function(number){
 		this.audioMP3.setAttribute('src', this.songs[number]);
 	}
-
+// this function acts as the method that will be called when a user clicks the blue and red buttons
 	this.playSong = function(number){
 		this.addURL(number)
 		this.audioMP3.play();
@@ -16,15 +16,15 @@ function Jukebox(song_list){
 		this.audioMP3.pause();
 	}
 }
-
+// array of clips
 var songs = ["http://wavcentral.com/sounds/movies/matrix/air.mp3", "http://wavcentral.com/sounds/movies/matrix/all_around.mp3", "http://wavcentral.com/sounds/movies/matrix/awake.mp3", "http://wavcentral.com/sounds/movies/matrix/believe.mp3", "http://wavcentral.com/sounds/movies/matrix/blue_red.mp3", "http://wavcentral.com/sounds/movies/matrix/chicken.mp3", "http://wavcentral.com/sounds/movies/matrix/come_on.mp3"]
 
 var myMusic = new Jukebox(songs);
-
+// this creates a blue and red button for every song that is in the array
 for (var i = 0; i < myMusic.songs.length; i++) {
 	$('#instruct').before("<p data-info=" + myMusic.songs[i] + ">Please choose the Red or Blue pill!</p><button type='button' data-index=" + i + " class='play'></button><button type='button' class='stop'></button>");
 };
-
+// .play and .stop act as the official funstions that play and stop the selected track
         $('.play').click(function() {
         	console.log($(this));
         	var number = $(this).data('index');
